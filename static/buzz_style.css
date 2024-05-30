@@ -1,0 +1,536 @@
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unna:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sedan:ital@0;1&display=swap');
+
+.logo-img:hover {
+    transform: scale(1.1);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.column#desc{
+    background-color: #56a7e9;
+    border-radius: 0px 10px 10px 0px;
+    font-family: 'Unna', sans-serif;
+    max-width: 545px;
+    max-height: 526px;
+    overflow-y: scroll;
+}
+
+.column#emotion {
+    border-left: 2px solid #000;
+    max-width: 500px;
+}
+
+.buzz-sub {
+    font-family: "Old Standard TT", serif;
+    padding-bottom: 10px;
+}
+
+p.content {
+    max-width: 50%;
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 1.2rem;
+    font-size: 18px;
+}
+
+.row#full {
+    border-radius: 10px;
+    background-color: #f3f3f3;
+}
+
+.buzz-info {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 1.2rem;
+    font-size: 18px;
+    /* overflow-y: scroll; */
+    max-height: 165px;
+    display: block;
+}
+
+
+.info {
+    font-family: 'Sedan', serif;
+    max-height: 180px;
+    overflow-x: hidden;
+    display: block;
+
+}
+
+.sub-info {
+	font-family: "Old Standard TT", serif;
+    overflow-x: hidden;
+    display: block;
+    font-size: 20px;
+}
+
+.column#video{
+    background-color: #5260da;
+    border-radius: 10px 0px 0px 10px;
+    width:100%;
+    max-width: 775px;
+}
+
+ul {
+    list-style: none;
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+    padding-right: 38rem;
+}
+
+.row {
+    display: flex;
+    margin-top: 40px !important;
+}
+
+div.frame:hover{
+    filter: grayscale(100%) brightness(150%); 
+}
+
+.column {
+    flex: 1;
+    padding: 10px;
+}
+
+.favorite {
+    padding-bottom: 15px;
+}
+
+.navbar {
+    background: #f3f3f3;
+    border-bottom: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+}
+
+@media (min-width: 1024px)
+.header-module {
+    padding-bottom: 27px;
+    padding-top: 28px;
+}
+
+.header-module {
+    align-items: center;
+    display: flex;
+    gap: 14px;
+    padding-bottom: 6px;
+    padding-top: 7px;
+    margin-right: auto;
+    max-width: 1280px;
+    padding-left: 14px;
+    padding-right: 14px;
+    position: relative;
+    width: 100%;
+}
+
+
+.logo-module-link {
+    display: flex;
+    transition: opacity .3s;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+
+@media (min-width: 1024px)
+.logo-img {
+    max-height: 150px;
+}
+
+.logo-img {
+    max-width: 200px;
+    width: auto;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.btn-primary, .header-buttons {
+    --bs-btn-color: #000 !important;
+    --bs-btn-bg: #dffe00 !important;
+    --bs-btn-border-color: #000 !important;
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #000 !important;
+    --bs-btn-hover-border-color: #000 !important;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #000 !important;
+    --bs-btn-active-border-color: #000 !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #0d6efd;
+    --bs-btn-disabled-border-color: #0d6efd;
+    border-radius: 0px !important;
+    font-family: "Inter", sans-serif !important;
+    font-size: .7rem !important;
+}
+
+.header-buttons, .btn-primary {
+    text-wrap: nowrap;
+    flex: 0 0 auto;
+    text-overflow: ellipsis;
+    align-items: center;
+    background: #dffe00;
+    border: 1px solid #000;
+    color: #000;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "Inter", sans-serif;
+    font-size: .7rem;
+    gap: 7px;
+    justify-content: center;
+    letter-spacing: .05em;
+    line-height: 150%;
+    min-height: 36px;
+    overflow: hidden;
+    padding: 5px 25px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: opacity .3s ease-in, background-color .5s ease-out, color .3s ease-in;
+}
+
+#hearted {
+    --bs-btn-color: #000 !important;
+    --bs-btn-bg: #dffe00 !important;
+    --bs-btn-border-color: #dffe00 !important;
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #dffe00 !important;
+    --bs-btn-hover-border-color: #000 !important;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #000 !important;
+    --bs-btn-active-border-color: #000 !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #0d6efd;
+    --bs-btn-disabled-border-color: #0d6efd;
+    border-radius: 0px !important;
+    font-family: "Inter", sans-serif !important;
+    font-size: .7rem !important;
+}
+
+h5 {
+	font-family: "Unna", serif;
+	margin-top: 10px !important;
+}
+
+@media (min-width: 1024px) 
+.item {}
+    display: inline-block;
+}
+
+.item {
+    display: inline-block;
+    position: relative;
+}
+
+
+li {
+    display: inline-block;
+    font-family: CoFoSansPixel, sans-serif;
+    text-align: -webkit-match-parent;
+    unicode-bidi: isolate;
+}
+
+.header-module-tabs {
+    text-transform: uppercase;
+}
+
+.login, .header, .buzz {
+	margin-top: 30px;
+	font-family: "Old Standard TT", serif;
+	display: flex;
+  	justify-content: center; /* Centers items horizontally */
+}
+
+.buzz-emotion {
+	padding-top: 30px;
+    margin-left: 20px; 
+	font-family: "Old Standard TT", serif;
+	display: flex;
+  	justify-content: left; /* Centers items horizontally */
+}
+
+.emotions p {
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    gap: 7px;
+    letter-spacing: .05em;
+    line-height: 150%;
+    text-transform: uppercase;
+    margin-bottom: 1.5px !important;
+}
+
+.buzz-comments {
+	padding-top: 30px;
+	font-family: "Old Standard TT", serif;
+	display: flex;
+    margin-left: 20px; 
+}
+
+@media (min-width: 1024px)
+.navLink{
+    border-bottom: none;
+    display: inline-block;
+}
+
+.navLink {
+    all: unset;
+    color: #000;
+    cursor: pointer;
+    display: block;
+    font-size: .8rem;
+    letter-spacing: -.02em;
+    padding: 14px;
+    text-decoration: none;
+    transition: color .3s ease-out;
+}
+
+.emotions span {
+    display: block;
+    font-size: 20px;
+    font-family: "Inter", sans-serif;
+    margin-left: 20px;
+}
+
+.dropdown {
+        position: relative;
+        display: inline-block;
+        overflow-x: hidden;
+}
+
+.dropdown-content {
+        display: none;
+        min-width: 1000px;
+        padding-top: 5px;
+        z-index: 100;
+        background-color: #56a7e9;
+        overflow-x: hidden;
+}
+.show {
+    display: block;
+    overflow-x: hidden;
+}
+
+.comments-scroll {
+    height: 300px;
+    margin: 10px;
+    overflow-y: auto;
+}
+
+.comment {
+    width: 90%;
+    border-top: 0.5px solid black;
+    padding: 20px 30px 10px 30px;
+    align-items: center;
+    margin: 0px 10px 0px 10px;
+    background-color: #fcf9f9;
+}
+
+.comment p {
+    font-family: "Inter", sans-serif;
+    font-size: .7rem;
+    gap: 7px;
+    letter-spacing: .05em;
+    line-height: 150%;
+    text-transform: uppercase;
+}
+
+.no-comments {
+    width: 90%;
+    padding: 10px 30px 10px 30px;
+    align-items: center;
+    margin: 0px 10px 0px 10px;
+}
+
+.no-comments p {
+    font-family: "Inter", sans-serif;
+    font-size: .8rem;
+    gap: 7px;
+    letter-spacing: .05em;
+    line-height: 150%;
+    text-transform: uppercase;
+}
+.progress {
+    width: 200px; /* Set the width of the progress bar */
+    height: 20px; /* Set the height of the progress bar */
+    background-color: #000000; /* Set the background color of the progress bar */
+    border-radius: 5px; /* Add rounded corners to the progress bar */
+    margin-bottom: 10px; /* Add some space below the progress bar */
+}
+
+.progress-bar {
+    height: 100%; /* Set the height of the progress bar to fill the container */
+    background-color: #111111; /* Set the background color of the progress bar */
+    border-radius: 5px; /* Add rounded corners to the progress bar */
+    width: 50%; /* Set the initial width of the progress bar to 50% */
+}
+
+div.reaction {
+    margin-top: 95px;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+}
+
+.reaction p {
+    font-family: "Inter", sans-serif;
+    font-size: 0.9rem;
+    gap: 7px;
+    letter-spacing: .05em;
+    line-height: 150%;
+    text-transform: uppercase;
+}
+
+.heart-icon {
+    transition: fill 0.3s;
+}
+        .fa-question-circle {
+            color: black;
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 17px;
+            cursor: pointer;
+            border-radius: 4px;
+            position: relative; /* Required for the tooltip */
+        }
+
+        /* Tooltip text */
+        .fa-question-circle .tooltip {
+            visibility: hidden;
+            width: 300px;
+            background-color: #fff;
+            color: #000;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px; /* Centers the tooltip */
+            opacity: 0;
+            transition: opacity 0.3s;
+	        font-family: "Inter", sans-serif;
+            font-size: 14px !important;
+        }
+
+        /* Tooltip arrow */
+        .fa-question-circle .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent transparent transparent;
+        }
+
+        /* Show the tooltip on hover */
+        .fa-question-circle:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+.nfl-jpg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.article {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 250px;
+    margin: 10px;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.overlay-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.overlay-container a {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    color:#0d6efd;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    font-size: 1.5rem;
+    gap: 7px;
+    letter-spacing: .05em;
+    line-height: 150%;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay-text {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.681);
+    z-index: 2;
+}
+
+.overlay-container:hover .overlay-text {
+    transition: 0.3s;
+    opacity: 1;
+}
