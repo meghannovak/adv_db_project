@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+	<header class="navbar">
+		<div class="header-module">
+			<div class="logo">
+				<a href="/about" class="logo-module-link">
+					<img class="logo-img" src="{{ url_for('static', filename='images/Logo.png') }}" alt="IMG">
+				</a>
+			</div>
+		<div class="header-module-tabs">
+			<ul class="nav-module-mainNav">
+				<li class="item">
+					<a class="navLink" href="/">Timeline</a>
+				</li>
+				<li class="item">
+					<a class="navLink" href="/archive">Archive</a>
+				</li>
+				{% if user %}
+				<li class="item">
+					<a class="navLink" href="/favorites">Favorites</a>
+				</li>
+				{% endif %}
+			</ul>
+		</div>
+		{% if user %}
+		<a class="btn-primary" href="/signout">Sign Out</a>
+		{% else %}
+		<a class="btn-primary" href="/login">Login</a>
+		{% endif %}
+	</header>
+</html>
+

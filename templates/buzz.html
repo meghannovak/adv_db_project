@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<head>
+	<title>What's the Buzz?</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='buzz_style.css') }}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body onload="scrollDiv_init()">
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var iframes = document.querySelectorAll('iframe[data-src]');
+			var options = {
+				root: null,
+				rootMargin: '0px',
+				threshold: 0.1
+			};
+			
+			var observer = new IntersectionObserver(function(entries, observer) {
+				entries.forEach(function(entry) {
+					if (entry.isIntersecting) {
+						var iframe = entry.target;
+						iframe.src = iframe.dataset.src;
+						observer.unobserve(iframe);
+					}
+				});
+			}, options);
+			
+			iframes.forEach(function(iframe) {
+				observer.observe(iframe);
+			});
+		});
+		</script>
+		<script>
+			function toggleDropdown() {
+        		var dropdownContent = document.getElementById("dropdownContent");
+        		dropdownContent.classList.toggle("show");
+    			}
+		</script>
+		<script>
+			function addfavorite(ad_id){
+			window.location.href=`/add/${ad_id}`;
+			};
+		</script>
+		<script>
+			ScrollRate = 10;
+
+			function scrollDiv_init() {
+				DivElmnt = document.getElementById('comments-scroll');
+				ReachedMaxScroll = false;
+				
+				DivElmnt.scrollTop = 0;
+				PreviousScrollTop  = 0;
+				
+				ScrollInterval = setInterval('scrollDiv()', ScrollRate);
+			}
+
+			function scrollDiv() {
+				if (!ReachedMaxScroll) {
+					DivElmnt.scrollTop = PreviousScrollTop;
+					PreviousScrollTop++;
+					
+					ReachedMaxScroll = DivElmnt.scrollTop >= (DivElmnt.scrollHeight - DivElmnt.offsetHeight);
+				}
+				else {
+					ReachedMaxScroll = (DivElmnt.scrollTop == 0)?false:true;
+					
+					DivElmnt.scrollTop = PreviousScrollTop;
+					PreviousScrollTop--;
+				}
+			}
+
+			function pauseDiv() {
+				clearInterval(ScrollInterval);
+			}
+
+			function resumeDiv() {
+				PreviousScrollTop = DivElmnt.scrollTop;
+				ScrollInterval    = setInterval('scrollDiv()', ScrollRate);
+			}
+
+		</script>
+		
+   {% include 'navbar.html' %}
+
+   <div class="container">
+	<h1 class="buzz">⚡ <i>WHAT'S THE BUZZ</i>? ⚡ </h1>
+    <div class="row">
+        <div class="column" id="video">
+            <div class="video-container">
+                <div class="frame">
+                    <iframe width="750" height="500" data-src="{{url}}"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="column" id="desc">
+			<div class="d-flex align-items-center justify-content-between"> 
+				<h2 class='buzz-sub'><b>{{ad[2]}}</b></h2>
+			</div>
+			<div class="favorite">
+				<button onclick="addfavorite({{ad[0]}})" id="searchButton" type="button" class="btn btn-primary {% if is_favorite %} active {% endif %}" id="hearted">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart heart-icon {% if is_favorite %} filled {% endif %}" viewBox="0 0 16 16">
+					<path d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.6 7.6 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z"/>
+				</svg>
+			</button>
+			</div> 
+			<h4 class='sub-info'>YEAR  <span class = 'buzz-info'> {{ad[1]}}</span> <h4>
+			<h4 class='sub-info'>BRAND  <span class = 'buzz-info'> {{ad[3]}}</span><h4>
+			{% if desc %} <h4 class='sub-info'>DESCRIPTION <br> <span class = 'buzz-info'>{{desc}}</span> </h4>{% endif %}
+			 {% if tags %}
+			 	{% for tag in tags %}
+			 	<h4 class='sub-info'> <span class='buzz-info'>#{{tag}} </span> </h4>
+				{% endfor %}
+			{% endif%}
+	    {% if caption %}
+            <div class="dropdown">
+                <button type="button" class="btn btn-primary" onclick="toggleDropdown()">Closed Caption</button>
+                <div id="dropdownContent" class="dropdown-content">
+                    <p class="content">"{{caption}}"</p>
+                </div>
+            </div>
+	    {% endif %}
+        </div>
+    </div>
+	</div>
+
+	<div class="container">
+		<div class="row" id="full">
+			<div class="column">
+				<h2 class="buzz-comments"><i>COMMENTS</i><i class="fa fa-question-circle" style="font-size:24px">
+						<span class="tooltip">This feature used a sentiment analysis model to assess the comment section of this video. Visit
+						<a href="https://huggingface.co/ProsusAI/finbert?text=the+weather+is+so+bad+today">HuggingFace</a>
+						for model specifics.
+						</span>
+			</i> <h2>	
+				<div class="comments-scroll" id="comments-scroll" onmouseover="pauseDiv()" onmouseout="resumeDiv()">
+					{% if comments == [] %}
+						<div class="no-comments"><p>No chatter here...</p></div>
+					{% else %}
+						{% for comm in comments %}
+							<div class="comment"><p>{{comm}}</p></div>
+						{% endfor %}
+					{% endif %}
+			</div>
+		   	</div>
+			<div class="column">
+			<div class="reaction">
+				<p><b>This comment section is...</b></p>
+				<p>{{comm_analyz[2]}}% Positive</p>
+				<div class="progress">
+                                        <div class="progress-bar" style="width: {{comm_analyz[2]}}%; background-color: #7FFF00"></div>
+                                </div>
+				<p>{{comm_analyz[1]}}% Neutral</p>
+				  <div class="progress">
+                                        <div class="progress-bar" style="width: {{comm_analyz[1]}}%; background-color: #FFFF00"></div>
+                                </div>
+				<p>{{comm_analyz[0]}}% Negative</p>
+				<div class="progress">
+					<div class="progress-bar" style="width: {{comm_analyz[0]}}%; background-color: #FF0000"></div>
+				</div>
+			</div>
+			</div>
+			<div class="column" id="emotion">
+			<h2 class="buzz-emotion"><i>EMOTIONAL APPEAL</i></h2>
+			{% if caption and emotions[0] != 0 %}
+			<div class="emotions">	
+				<br>
+				<span><p>&#129402; <b>Sadness:</b>  {{emotions[5]}}%</p></span>
+				<span><p>&#129314; <b>Disgust:</b>  {{emotions[2]}}%</p></span>
+				<span><p>&#128528; <b>Neutral:</b>  {{emotions[0]}}%</p></span>
+				<span><p>&#128516; <b>Joy:</b>     {{emotions[4]}}%</p></span>
+				<span><p>&#128552; <b>Fear:</b>     {{emotions[3]}}%</p></span>
+				<span><p>&#128545; <b>Anger:</b>    {{emotions[1]}}%</p></span>
+				<span><p>&#128558; <b>Suprise:</b> {{emotions[6]}}%</p></span>
+				<br>
+				<br>
+				<i class="fa fa-question-circle" style="font-size:24px">
+					<span class="tooltip">This feature used a text classification model to classify emotions 
+								  from this video's closed caption. Visit 
+								  <a href="https://huggingface.co/j-hartmann/emotion-english-distilroberta-base">HuggingFace</a>
+								  for model specifics.
+					</span>
+				</i>
+			</div>
+			</div>
+			{% else %}
+				<div class="emotions">
+					<br>
+					<span><p> <i>No analysis available!</i></p></span>
+				</div>
+	 		{% endif %}
+		</div>
+		<div class="row" id="full">
+			<h2 class="buzz-comments"><i>RELATED READS</i><h2></h2>
+			{% for article, title in articles %}
+				<div class="column article">
+					<div class="overlay-container">
+						<img class="nfl-jpg" src="{{ url_for('static', filename='images/nfl' ~ loop.index ~ '.jpeg') }}" >
+						<div class="overlay-text">
+							<a href="{{article[0][1:-1]}}">"{{title}}"</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div> 
+   </div>
+</body>
+</html>

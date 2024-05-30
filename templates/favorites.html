@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<head>
+   <title>Favorites</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='archive_style.css') }}">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+   <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          var iframes = document.querySelectorAll('iframe[data-src]');
+          var options = {
+             root: null,
+             rootMargin: '0px',
+             threshold: 0.1
+          };
+          
+          var observer = new IntersectionObserver(function(entries, observer) {
+             entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                   var iframe = entry.target;
+                   iframe.src = iframe.dataset.src;
+                   observer.unobserve(iframe);
+                }
+             });
+          }, options);
+          
+          iframes.forEach(function(iframe) {
+             observer.observe(iframe);
+          });
+          });
+       
+   </script>
+   {% include 'navbar.html' %}
+   <div class="container">
+      <h1 class="header"> Hey, {{user.first_name}}!</h1>
+      <div class="gif-container">
+         <iframe src="https://giphy.com/embed/vl2aVVDMENpWFNyPy6" class="gif" width="200" height="198" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+      </div>
+      <h4 class="header">Keep track of your favorites here:</h4>
+
+      <div class="archive-container">
+         <div class="filters">
+            <form action="/favorites" method="post">
+
+               <h4>Sort</h4>
+               <input type="radio" id="sort-atoz" name="sort-options" value="sort-atoz" {% if sort == "sort-atoz"  %}checked{% endif %} >
+               <label for="sort-atoz">Alphabetically (A to Z)</label><br>
+
+               <input type="radio" id="sort-ztoa" name="sort-options" value="sort-ztoa" {% if sort == "sort-ztoa"  %}checked{% endif %}>
+               <label for="sort-ztoa">Alphabetically (Z to A)</label><br>
+
+               <input type="radio" id="sort-yeardesc" name="sort-options" value="sort-yeardesc" {% if sort == "sort-yeardesc"  %}checked{% endif %}>
+               <label for="sort-yeardesc">Year (new to old)</label><br>
+               
+               <input type="radio" id="sort-yearasc" name="sort-options" value="sort-yearasc" {% if sort == "sort-yearasc"  %}checked{% endif %}>
+               <label for="sort-yearasc">Year (old to new)</label><br>
+                              
+               <input type="radio" id="none" name="sort-options" value="none" {% if sort == "none"  %}checked{% endif %}>
+               <label for="none">None</label><br><br>
+
+               <h4>Video Qualities</h4>
+               <div>
+                  <input type="checkbox" id="is_funny" name="is_funny" {% if "is_funny" in filters %}checked{% endif %} />
+                  <label for="is_funny">Funny</label>
+               </div>
+               <div>
+                  <input type="checkbox" id="shows_product_quickly" name="shows_product_quickly" {% if "shows_product_quickly" in filters %}checked{% endif %} />
+                  <label for="shows_product_quickly">Shows Product Quickly</label>
+               </div>
+               <div>
+               <input type="checkbox" id="is_patriotic" name="is_patriotic" {% if "is_patriotic" in filters %}checked{% endif %} />
+               <label for="is_patriotic">Patriotic</label>
+               </div>
+               <div>
+                  <input type="checkbox" id="shows_celebrity" name="shows_celebrity" {% if "shows_celebrity" in filters %}checked{% endif %} />
+                  <label for="shows_celebrity">Celebrity</label>
+               </div>
+               <div>
+                  <input type="checkbox" id="has_danger" name="has_danger" {% if "has_danger" in filters %}checked{% endif %} />
+                  <label for="has_danger">Danger</label>
+               </div>
+               <div>
+                  <input type="checkbox" id="has_animal" name="has_animal" {% if "has_animal" in filters %}checked{% endif %} />
+                  <label for="has_animal">Animal</label>
+               </div>
+               <div>
+                  <input type="checkbox" id="uses_sex" name="uses_sex" {% if "uses_sex" in filters %}checked{% endif %} />
+                  <label for="uses_sex">Sex Appeal</label>
+               </div>
+
+               <br>
+
+               <h4>Brand</h4>
+               <div class="brands-scroll">
+                  {% for brand in all_brands %}
+                     <input type="checkbox" id="{{brand}}" name="{{brand}}" {% if brand in filters %}checked{% endif %} >
+                     <label for="{{brand}}">{{brand}}</label><br>
+                  {% endfor %}
+               </div>
+
+               <br>
+               <input class="header-buttons" type="submit" value="Submit">
+            </form>
+         </div>
+
+         <div class="ad-previews">
+            {% if ads %}
+            {% for ad in ads %}
+            <form action="/buzz/{{ad[0]}}" method="post">
+               <div class="ad-preview">
+                  <div class="overlay-container">
+                        <div class="overlay-text">
+                           <input type="submit" value="{{ad[2]}}">
+                        </div>
+                        <img class="image" src="{{ad[5]}}">
+                  </div>
+               </div>
+            </form>
+            {% endfor %}
+            {% else %}
+            <h5 class="results">No search results.</h5>
+            {% endif %}
+         </div>
+      </div>
+   </div>
+
+</body>
+</html>
